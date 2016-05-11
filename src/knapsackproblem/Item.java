@@ -33,4 +33,10 @@ public class Item<T> {
         return weight;
     }
 
+    @Override
+    public String toString() {
+        return "    Item:{\n" + "       content:" + content.toString() + ", value:" + value + ", weight:" + weight + "\n    }";
+    }
+    
+
 }

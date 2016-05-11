@@ -5,6 +5,8 @@
  */
 package knapsackproblem;
 
+import java.util.List;
+
 class Ring {
 
     private String name;
@@ -44,14 +46,19 @@ public class KnapsackProblem {
      */
     public static void main(String[] args) {
 
-        Knapsack knapsack = new Knapsack(100);
+        final int MAX_CAPACITY = 100;
+        Knapsack knapsack = new Knapsack(MAX_CAPACITY);
+        
+        List<Item> itensList;
+        itensList = new ItensList<>();
 
-        knapsack.addItem(new Item(new Ring("Kowalski", 10, "Platinium"), 100, 50));
-        knapsack.addItem(new Item(new Ring("Stone Cold", 4, "Gold"), 2000, 10));
-        knapsack.addItem(new Item(new Book("The secret", 500, "Meee Lee"), 50, 30));
-        knapsack.addItem(new Item(new Book("Angular4Dummys", 100, "Arnaldo Swag"), 120, 10));
+        itensList.add(new Item(new Ring("Kowalski", 10, "Platinium"), 100, 50));
+        itensList.add(new Item(new Ring("Stone Cold", 4, "Gold"), 2000, 10));
+        itensList.add(new Item(new Book("The secret", 500, "Meee Lee"), 50, 30));
+        itensList.add(new Item(new Book("Angular4Dummys", 100, "Arnaldo Swag"), 120, 10));
+        
+        MaxKnapsack maxKnapsack=new MaxKnapsack(knapsack, itensList);
 
-        knapsack.toString();
     }
 
 }

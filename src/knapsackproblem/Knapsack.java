@@ -19,36 +19,39 @@ public class Knapsack {
 
     public Knapsack(int capacity) {
         this.capacity = capacity;
+        this.itens = new ItensList<>();
+
     }
-    
+
     public List<Item> getItens() {
         return itens;
     }
 
-    private int getKnapsackValue() {
-        int value = 0;
+    private int getKnapsackWeight() {
+        int weight = 0;
 
         for (Item temp : itens) {
-            value = value + temp.getValue();
+            weight = weight + temp.getWeight();
         }
-        return value;
+        return weight;
     }
 
     public Item addItem(Item item) {
 
-        if (this.getKnapsackValue() + item.getValue() <= this.capacity) {
+        if (this.getKnapsackWeight() + item.getWeight() <= this.capacity) {
             itens.add(item);
             return item;
+        } else {
+            return null;
         }
-        else return null;
     }
 
     @Override
     public String toString() {
-        return "Knapsack{"
-                + "/n" + "capacity=" + capacity + '}';
+        return "Knapsack:{"
+                + "\n" + "  capacity:" + capacity +",\n"+"  "+
+                this.itens.toString()+
+                "\n}";
     }
-    
-    
 
 }
