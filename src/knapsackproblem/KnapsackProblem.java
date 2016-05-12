@@ -58,6 +58,7 @@ public class KnapsackProblem {
         itensList.add(new Item(new Book("Angular4Dummys", 100, "Arnaldo Swag"), 120, 10));
         
         MaxKnapsack maxKnapsack=new MaxKnapsack(knapsack, itensList);
+        maxKnapsack.maximise();
 
     }
 

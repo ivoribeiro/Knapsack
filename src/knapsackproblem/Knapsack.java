@@ -23,6 +23,11 @@ public class Knapsack {
 
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+    
+
     public List<Item> getItens() {
         return itens;
     }
