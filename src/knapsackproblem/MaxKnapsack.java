@@ -9,27 +9,45 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Class with the intention of resolve the problem, it receive a knapsack to put
+ * itens on , a list of itens and it will construct a value table with it , to
+ * find what is the ideal value to put in the bag. Later we find the itens that
+ * match the value
  *
  * @author ivo
  */
 public class MaxKnapsack {
 
+    //The knapsack in sudy
     private Knapsack knapsack;
+    //the itens to analise 
     private List<Item> itens;
-    private int valueTable[][];
 
+    //the value table 
+    private int valueTable[][];
+    //knapsack ideal value
+    private int knapsackMaximalValue;
+    //the choosed itens 
+    private List<Item> choosedItens;
+
+//construct
     public MaxKnapsack(Knapsack knapsack, List<Item> itens) {
         this.knapsack = knapsack;
         this.itens = itens;
+        // a value table from 0 to itens number , and 0 to knapsack capacity weight
         this.valueTable = new int[this.itens.size() + 1][this.knapsack.getCapacity() + 1];
 
     }
 
-    private void buildValueTable() {
+    //function to build the value table matrix
+    //it returns the final item and weight state
+    private int[] buildValueTable() {
 
         int wt = 0, val = 0;
-        for (int i = 1; i <= this.itens.size(); i++) {
-            for (int w = 1; w <= this.knapsack.getCapacity(); w++) {
+        int i, w = 1;
+        int iw[] = new int[2];
+        for (i = 1; i <= this.itens.size(); i++) {
+            for (w = 1; w <= this.knapsack.getCapacity(); w++) {
                 wt = this.itens.get(i - 1).getWeight();
                 val = this.itens.get(i - 1).getValue();
 
@@ -40,23 +58,48 @@ public class MaxKnapsack {
                 }
             }
         }
+        iw[0] = i;
+        iw[1] = w;
+        return iw;
     }
-    private int getMaximalValue(){
+
+    //returns the ideal value of the value table
+    private int getMaximalValue() {
         return this.valueTable[this.itens.size()][this.knapsack.getCapacity()];
     }
-    
-    private int[] getSelectedItens(){
+
+    //select the itens to the ideal value
+    //return the ideal list of itens
+    private List<Item> getSelectedItens(int i, int w) {
+        i = i - 1;
+        w = w - 1;
+        List<Item> toReturn = new ItensList<>();
+        while (i > 0 && w > 0) {
+            if (this.valueTable[i][w] != this.valueTable[i - 1][w]) {
+                toReturn.add(this.itens.get(i - 1));
+                w = w - this.itens.get(i - 1).getWeight();
+                i = i - 1;
+            } else {
+                i = i - 1;
+            }
+        }
+
+        return toReturn;
     }
 
-    public List<Item> maximise() {
-        this.buildValueTable();
-        int maxValue=this.getMaximalValue();
-        this.printValueTable();
-        return this.itens;
+    public MaxKnapsack maximise() {
+        int iw[] = new int[2];
+        iw = this.buildValueTable();
+        this.knapsackMaximalValue = this.getMaximalValue();
+        this.choosedItens = this.getSelectedItens(iw[0], iw[1]);
+  
+        return this;
     }
 
-    public Knapsack accept() {
-        return null;
+    public void accept() {
+        for(Item item:this.choosedItens){
+               this.knapsack.addItem(item);
+        }
     }
 
     private void printValueTable() {

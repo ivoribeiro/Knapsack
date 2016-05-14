@@ -35,7 +35,7 @@ public class Item<T> {
 
     @Override
     public String toString() {
-        return "    Item:{\n" + "       content:" + content.toString() + ", value:" + value + ", weight:" + weight + "\n    }";
+        return "    Item:{\n" + "       content:" + content.toString() + ", \n       value:" + value + ", \n        weight:" + weight + "\n    }\n";
     }
     
 

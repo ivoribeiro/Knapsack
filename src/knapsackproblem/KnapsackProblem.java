@@ -19,6 +19,11 @@ class Ring {
         this.composition = composition;
     }
 
+    @Override
+    public String toString() {
+        return "Ring{" + "name:" + name + ", quilates:" + quilates + ", composition:" + composition + '}';
+    }
+
 }
 
 class Book {
@@ -31,6 +36,11 @@ class Book {
         this.name = name;
         this.pages = pages;
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" + "name:" + name + ", pages:" + pages + ", author:" + author + '}';
     }
 
 }
@@ -46,9 +56,9 @@ public class KnapsackProblem {
      */
     public static void main(String[] args) {
 
-        final int MAX_CAPACITY = 100;
+        final int MAX_CAPACITY = 90;
         Knapsack knapsack = new Knapsack(MAX_CAPACITY);
-        
+
         List<Item> itensList;
         itensList = new ItensList<>();
 
@@ -56,9 +66,21 @@ public class KnapsackProblem {
         itensList.add(new Item(new Ring("Stone Cold", 4, "Gold"), 2000, 10));
         itensList.add(new Item(new Book("The secret", 500, "Meee Lee"), 50, 30));
         itensList.add(new Item(new Book("Angular4Dummys", 100, "Arnaldo Swag"), 120, 10));
+
+        MaxKnapsack maxKnapsack = new MaxKnapsack(knapsack, itensList);
+        maxKnapsack.maximise().accept();
+
+        System.out.println("Caso de estudo 1\n");
         
-        MaxKnapsack maxKnapsack=new MaxKnapsack(knapsack, itensList);
-        maxKnapsack.maximise();
+        System.out.println("Capacidade da mochila: "+ MAX_CAPACITY+"\n");
+
+        System.out.println("Lista de Itens existentes:\n");
+
+        System.out.println(itensList.toString());
+        
+        System.out.println("Solução Encontrada: \n");
+
+        System.out.println(knapsack.toString());
 
     }
 

@@ -24,7 +24,7 @@ public class ItensList<Item> extends ArrayList<Item> {
             toReturn=toReturn.concat(temp.toString());
             toReturn =toReturn+"\n";
         }
-        return "ItensList:{\n" + toReturn + "\n  }";
+        return "\n" + toReturn + "\n";
     }
 
 }

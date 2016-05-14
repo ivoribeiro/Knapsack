@@ -54,8 +54,9 @@ public class Knapsack {
     @Override
     public String toString() {
         return "Knapsack:{"
-                + "\n" + "  capacity:" + capacity +",\n"+"  "+
-                this.itens.toString()+
+                + "\n \n" + "  capacity:" + capacity +",\n \n"+
+                "   ItensList:{\n "+
+                this.itens.toString()+"}\n"+
                 "\n}";
     }
 
