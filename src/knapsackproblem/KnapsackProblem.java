@@ -56,30 +56,85 @@ public class KnapsackProblem {
      */
     public static void main(String[] args) {
 
-        final int MAX_CAPACITY = 90;
-        Knapsack knapsack = new Knapsack(MAX_CAPACITY);
+        //criar itens
+        Item<Ring> item1 = new Item(new Ring("Kowalski", 10, "Platinium"), 70, 5);
+        Item<Ring> item2 = new Item(new Ring("Stone Cold", 4, "Gold"), 25, 7);
+        Item<Book> item3 = new Item(new Book("The secret", 500, "Meee Lee"), 43, 3);
+        Item<Book> item4 = new Item(new Book("Angular4Dummys", 100, "Arnaldo Swag"), 19, 9);
+        Item<Book> item5 = new Item(new Ring("Anel de Casamento", 10, "Platinium"), 30, 1);
+        Item<Book> item6 = new Item(new Book("Livro Harry Potter", 4, "Gold"), 16, 3);
+        Item<Book> item7 = new Item(new Ring("Anel Ruby", 500, "Meee Lee"), 15, 4);
+        Item<Book> item8 = new Item(new Ring("Anel de filosofar", 100, "Arnaldo Swag"), 26, 7);
+        Item<Book> item9 = new Item(new Book("Livro Kamasutra", 10, "Platinium"), 69, 1);
+        Item<Book> item10 = new Item(new Book("Livro 100 reasons why women deserve less", 300, "Gold"), 300, 5);
+        Item<Book> item11 = new Item(new Book("Livro 50 ways to suicide", 500, "Meee Lee"), 25, 6);
+        Item<Book> item12 = new Item(new Book("Livro Utilidade do XML", 100, "Arnaldo Swag"), 1, 1000);
+        Item<Book> item13 = new Item(new Ring("Anel de Ouro", 100, "Arnaldo Swag"), 20, 5);
+        Item<Book> item14 = new Item(new Book("Livro cenas fixes", 100, "Arnaldo Swag"), 39, 8);
+        Item<Book> item15 = new Item(new Ring("Anel de prata", 100, "Arnaldo Swag"), 17, 3);
+        Item<Book> item16 = new Item(new Book("Livro Dilemas", 100, "Arnaldo Swag"), 32, 4);
 
         List<Item> itensList;
         itensList = new ItensList<>();
 
-        itensList.add(new Item(new Ring("Kowalski", 10, "Platinium"), 100, 50));
-        itensList.add(new Item(new Ring("Stone Cold", 4, "Gold"), 2000, 10));
-        itensList.add(new Item(new Book("The secret", 500, "Meee Lee"), 50, 30));
-        itensList.add(new Item(new Book("Angular4Dummys", 100, "Arnaldo Swag"), 120, 10));
+        itensList.add(item1);
+        itensList.add(item2);
+        itensList.add(item3);
+        itensList.add(item4);
+        //exemplo1
+       // KnapsackIt(20,itensList,1);
+        //exemplo4
+       //KnapsackIt(40, itensList,4);
+
+        itensList.add(item5);
+        itensList.add(item6);
+        itensList.add(item7);
+        itensList.add(item8);
+
+        //exemplo 2
+        //KnapsackIt(20,itensList,2);
+        //exemplo 5
+        //KnapsackIt(40,itensList,5);
+        
+        itensList.add(item9);
+        itensList.add(item10);
+        itensList.add(item11);
+        itensList.add(item12);
+        itensList.add(item13);
+        itensList.add(item14);
+        itensList.add(item15);
+        itensList.add(item16);
+
+        //exemplo 3
+        KnapsackIt(20,itensList,3);
+        //exemplo 6
+        //KnapsackIt(40,itensList,7);
+    }
+
+    private static void KnapsackIt(int maxCapacity, List<Item> itensList, int i) {
+
+        final int MAX_CAPACITY = maxCapacity; //conjunto 1 ,2 ,3
+        //final int MAX_CAPACITY = 40; //conjunto 4, 5, 6
+        Knapsack knapsack = new Knapsack(MAX_CAPACITY);
 
         MaxKnapsack maxKnapsack = new MaxKnapsack(knapsack, itensList);
         maxKnapsack.maximise().accept();
 
-        System.out.println("Caso de estudo 1\n");
-        
-        System.out.println("Capacidade da mochila: "+ MAX_CAPACITY+"\n");
+        System.out.println("Caso de estudo " + i + "\n");
+
+        System.out.println("Capacidade da mochila: " + MAX_CAPACITY + "\n");
 
         System.out.println("Lista de Itens existentes:\n");
 
         System.out.println(itensList.toString());
-        
+
         System.out.println("Solução Encontrada: \n");
 
+        System.out.println("Tabela de valores \n");
+
+        maxKnapsack.printValueTable();
+
+        System.out.println("Itens escolhidos \n");
         System.out.println(knapsack.toString());
 
     }

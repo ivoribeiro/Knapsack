@@ -102,7 +102,7 @@ public class MaxKnapsack {
         }
     }
 
-    private void printValueTable() {
+    public void printValueTable() {
         String weights = "";
         for (int i = 0; i <= this.knapsack.getCapacity(); i++) {
             weights = weights + i + ",";
