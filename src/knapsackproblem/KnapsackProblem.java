@@ -82,9 +82,9 @@ public class KnapsackProblem {
         itensList.add(item3);
         itensList.add(item4);
         //exemplo1
-       // KnapsackIt(20,itensList,1);
+        //KnapsackIt(20,itensList,1); //376794
         //exemplo4
-       //KnapsackIt(40, itensList,4);
+        // KnapsackIt(40, itensList,4);//554539
 
         itensList.add(item5);
         itensList.add(item6);
@@ -92,10 +92,9 @@ public class KnapsackProblem {
         itensList.add(item8);
 
         //exemplo 2
-        //KnapsackIt(20,itensList,2);
+        // KnapsackIt(20,itensList,2); //531562
         //exemplo 5
-        //KnapsackIt(40,itensList,5);
-        
+       // KnapsackIt(40,itensList,5); //1216636
         itensList.add(item9);
         itensList.add(item10);
         itensList.add(item11);
@@ -106,9 +105,9 @@ public class KnapsackProblem {
         itensList.add(item16);
 
         //exemplo 3
-        KnapsackIt(20,itensList,3);
+        // KnapsackIt(20,itensList,3); //780057
         //exemplo 6
-        //KnapsackIt(40,itensList,7);
+        //KnapsackIt(40,itensList,7); //1935791
     }
 
     private static void KnapsackIt(int maxCapacity, List<Item> itensList, int i) {
@@ -118,7 +117,11 @@ public class KnapsackProblem {
         Knapsack knapsack = new Knapsack(MAX_CAPACITY);
 
         MaxKnapsack maxKnapsack = new MaxKnapsack(knapsack, itensList);
+        final long startTime = System.nanoTime();
         maxKnapsack.maximise().accept();
+        final long endTime = System.nanoTime();
+
+        System.out.println("Total execution time: " + (endTime - startTime));
 
         System.out.println("Caso de estudo " + i + "\n");
 
