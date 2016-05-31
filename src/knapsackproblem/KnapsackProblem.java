@@ -82,9 +82,9 @@ public class KnapsackProblem {
         itensList.add(item3);
         itensList.add(item4);
         //exemplo1
-        //KnapsackIt(20,itensList,1); //376794
+       // KnapsackIt(20,itensList,1); //376794   171
         //exemplo4
-        // KnapsackIt(40, itensList,4);//554539
+        //KnapsackIt(40, itensList,4);//554539 332
 
         itensList.add(item5);
         itensList.add(item6);
@@ -92,9 +92,9 @@ public class KnapsackProblem {
         itensList.add(item8);
 
         //exemplo 2
-        // KnapsackIt(20,itensList,2); //531562
+        // KnapsackIt(20,itensList,2); //531562   341
         //exemplo 5
-       // KnapsackIt(40,itensList,5); //1216636
+        // KnapsackIt(40,itensList,5); //1216636 664
         itensList.add(item9);
         itensList.add(item10);
         itensList.add(item11);
@@ -105,9 +105,9 @@ public class KnapsackProblem {
         itensList.add(item16);
 
         //exemplo 3
-        // KnapsackIt(20,itensList,3); //780057
+         //KnapsackIt(20,itensList,3); //780057 678
         //exemplo 6
-        //KnapsackIt(40,itensList,7); //1935791
+        //KnapsackIt(40,itensList,7); //1935791 1322
     }
 
     private static void KnapsackIt(int maxCapacity, List<Item> itensList, int i) {
@@ -118,10 +118,12 @@ public class KnapsackProblem {
 
         MaxKnapsack maxKnapsack = new MaxKnapsack(knapsack, itensList);
         final long startTime = System.nanoTime();
-        maxKnapsack.maximise().accept();
+        int compareCount=maxKnapsack.maximise().accept().compareCount();
         final long endTime = System.nanoTime();
 
         System.out.println("Total execution time: " + (endTime - startTime));
+        
+        System.out.println("Comparações\n"+compareCount);
 
         System.out.println("Caso de estudo " + i + "\n");
 
@@ -133,7 +135,7 @@ public class KnapsackProblem {
 
         System.out.println("Solução Encontrada: \n");
 
-        System.out.println("Tabela de valores \n");
+        System.out.println("Tabela de valores \n");   
 
         maxKnapsack.printValueTable();
 

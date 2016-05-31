@@ -22,6 +22,8 @@ public class MaxKnapsack {
     private Knapsack knapsack;
     //the itens to analise 
     private List<Item> itens;
+    
+    private int compareN;
 
     //the value table 
     private int valueTable[][];
@@ -47,13 +49,17 @@ public class MaxKnapsack {
         int i, w = 1;
         int iw[] = new int[2];
         for (i = 1; i <= this.itens.size(); i++) {
+            this.compareN++;
             for (w = 1; w <= this.knapsack.getCapacity(); w++) {
+                this.compareN++;
                 wt = this.itens.get(i - 1).getWeight();
                 val = this.itens.get(i - 1).getValue();
 
                 if (wt > w) {
+                    this.compareN++;
                     this.valueTable[i][w] = this.valueTable[i - 1][w];
                 } else if (wt <= w) {
+                    this.compareN++;
                     this.valueTable[i][w] = Math.max(this.valueTable[i - 1][w], val + this.valueTable[i - 1][w - wt]);
                 }
             }
@@ -75,7 +81,9 @@ public class MaxKnapsack {
         w = w - 1;
         List<Item> toReturn = new ItensList<>();
         while (i > 0 && w > 0) {
+            this.compareN++;
             if (this.valueTable[i][w] != this.valueTable[i - 1][w]) {
+                this.compareN++;
                 toReturn.add(this.itens.get(i - 1));
                 w = w - this.itens.get(i - 1).getWeight();
                 i = i - 1;
@@ -96,10 +104,15 @@ public class MaxKnapsack {
         return this;
     }
 
-    public void accept() {
+    public MaxKnapsack accept() {
         for(Item item:this.choosedItens){
                this.knapsack.addItem(item);
         }
+        return this;
+    }
+    
+    public int compareCount(){
+        return this.compareN;
     }
 
     public void printValueTable() {
