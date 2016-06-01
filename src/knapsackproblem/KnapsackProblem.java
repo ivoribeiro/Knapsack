@@ -83,6 +83,7 @@ public class KnapsackProblem {
         itensList.add(item4);
         //exemplo1
        // KnapsackIt(20,itensList,1); //376794   171
+       // KnapsackIt(120,itensList,7); //376794   171
         //exemplo4
         //KnapsackIt(40, itensList,4);//554539 332
 
@@ -108,6 +109,21 @@ public class KnapsackProblem {
          //KnapsackIt(20,itensList,3); //780057 678
         //exemplo 6
         //KnapsackIt(40,itensList,7); //1935791 1322
+        
+        
+        //7
+        generate(120,20);
+    }
+    
+    private static void generate(int itensN, int weightn){
+         Item<Ring> item1 = new Item(new Ring("Kowalski", 10, "Platinium"), 70, 5);
+         final int MAX_CAPACITY = weightn;
+          List<Item> itensList;
+        itensList = new ItensList<>();
+        for(int i=1;i<=itensN;i++){
+            itensList.add(item1);
+        }
+         KnapsackIt(MAX_CAPACITY,itensList,7);
     }
 
     private static void KnapsackIt(int maxCapacity, List<Item> itensList, int i) {
